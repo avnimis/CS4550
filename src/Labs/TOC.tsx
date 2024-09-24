@@ -8,6 +8,11 @@ export default function TOC() {
         <li><Link to="/Labs/Lab2">Lab 2</Link></li>
         <li><Link to="/Labs/Lab3">Lab 3</Link></li>
         <li><Link to="/Kanbas">Kanbas</Link></li>
+        <li> <a className="wd-github"
+            href="https://github.com/avnimis/CS4550/tree/Lab1">
+            Github Repo
+          </a>
+        </li>
       </ul>
     );
   }
