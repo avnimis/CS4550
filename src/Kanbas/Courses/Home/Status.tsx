@@ -9,8 +9,6 @@ import { GoBell } from "react-icons/go";
 
 
 
-
-{/* Find more icons */ }
 export default function CourseStatus() {
   return (
     <div id="wd-course-status" style={{ width: "300px" }}>
