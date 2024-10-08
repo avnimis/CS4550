@@ -10,7 +10,6 @@ import { MdOutlineAssignment, MdOutlineForum } from "react-icons/md";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 
 
-
 export default function KanbasNavigation() {
   return (
     <div id="wd-kanbas-navigation" style={{ width: 110 }}
@@ -31,12 +30,17 @@ export default function KanbasNavigation() {
         <AiOutlineDashboard className="fs-1 text-danger" /><br />
         Dashboard </Link>
 
-
       <Link to="/Kanbas/Dashboard" id="wd-course-link"
         className="list-group-item text-white
                    bg-black text-center border-0">
         <LiaBookSolid className="fs-1 text-danger" /><br />
         Courses </Link>
+
+        <Link to="/Labs" id="wd-labs-link"
+        className="list-group-item text-white
+                   bg-black text-center border-0">
+        <MdOutlineAssignment className="fs-1 text-danger" /><br />
+        Labs </Link>
 
       <Link to="/Kanbas/Dashboard" id="wd-group-link"
         className="list-group-item text-white
@@ -80,11 +84,6 @@ export default function KanbasNavigation() {
         <IoIosHelpCircleOutline className="fs-1 text-danger" /><br />
         Help </Link>
 
-      <Link to="/Labs" id="wd-labs-link"
-        className="list-group-item text-white
-                   bg-black text-center border-0">
-        <MdOutlineAssignment className="fs-1 text-danger" /><br />
-        Labs </Link>
 
     </div>
   );
