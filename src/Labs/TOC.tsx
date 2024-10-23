@@ -35,7 +35,7 @@ export default function TOC() {
 
       <li className="nav-item">
         <a id="wd-github"
-          href="https://github.com/avnimis/CS4550/tree/a2" 
+          href="https://github.com/avnimis/CS4550/tree/a3" 
           className = "nav-link">
           Github Repo
         </a>
