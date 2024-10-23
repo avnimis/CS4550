@@ -1,29 +1,33 @@
+import * as db from "../../Database";
+import { useParams } from "react-router";
+
+
 export default function AssignmentEditor() {
+  const { aid } = useParams(); 
+  const assignments = db.assignments;
+  const assignment = assignments.find(assignment => assignment._id === aid)
+
+  if(!assignment){
+    return( <span> Assignment not found </span>
+      )
+  }
+
   return (
     <div id="wd-assignments-editor">
       <label htmlFor="wd-name">Assignment Name</label>
       <div>
 
-        <input id="wd-name" className="form-control mb-2" value="A1 - ENV + HTML" /> <br />
+        <input id="wd-name" className="form-control mb-2" value={`${assignment.title}`} /> <br />
 
         <textarea className="form-control mb-2" id="wd-description" cols={50} rows={8}>
-          The assignment is available online
-          
-          Submit a link to the landing page of your Web application running on Netlify.
-          
-          The landing page should include the following: 
-          Your full name and section 
-          Links to each of the lab assignments 
-          Link to the Kanbas application 
-          Links to all relevant source code repositories 
-          The Kanbas application should include a link to navigate back to the landing page.
+          {assignment.description}
         </textarea><br />
       </div>
 
       <div id="wd-assignment-editor-rows" className="d-flex flex-column justify-content-center">
         <div className="d-flex flex-row mb-4 text-nowrap">
           <label htmlFor="wd-points" className="form-label p-2 w-25">Points</label>
-          <input id="wd-points" type="number" className="form-control" value={100} />
+          <input id="wd-points" type="number" className="form-control" value={`${assignment.points}`} />
         </div>
 
         <div className="d-flex flex-row mb-4 text-nowrap">
@@ -86,17 +90,17 @@ export default function AssignmentEditor() {
             <input id="wd-assign-to" value="Everyone" className="form-control mb-3" />
 
             <label htmlFor="wd-due-date" className="form-label mb-3"> <b>Due</b> </label>
-            <input type="date" id="wd-text-fields-due" value="05/13/2024" className="form-control mb-3" />
+            <input type="date" id="wd-text-fields-due" value={`${assignment.due_format}`} className="form-control mb-3" />
 
             <div className="row">
               <div className="col">
                 <label htmlFor="wd-available-from" className="form-label mb-3"> <b>Avaible from</b></label>
-                <input type="date" id="wd-text-fields-due" value="05/13/2024" className="form-control mb-3" />
+                <input type="date" id="wd-text-fields-due" value={`${assignment.available_from_format}`} className="form-control mb-3" />
               </div>
 
               <div className="col">
                 <label htmlFor="wd-until" className="form-label mb-3"> <b>Until</b> </label>
-                <input type="date" id="wd-text-fields-due" value="05/13/2024" className="form-control mb-3" />
+                <input type="date" id="wd-text-fields-due" value={`${assignment.available_until_format}`} className="form-control mb-3" />
               </div>
             </div>
 

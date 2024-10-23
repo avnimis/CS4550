@@ -1,8 +1,8 @@
 import { AiOutlineDashboard } from "react-icons/ai";
 import { IoCalendarOutline } from "react-icons/io5";
 import { LiaBookSolid, LiaCogSolid } from "react-icons/lia";
-import { FaRegCircleUser } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { FaInbox, FaRegCircleUser } from "react-icons/fa6";
+import { Link, useLocation } from "react-router-dom";
 import { GrGroup } from "react-icons/gr"
 import { BsEnvelopePaper } from "react-icons/bs"
 import { CiClock2, CiYoutube } from "react-icons/ci";
@@ -11,6 +11,15 @@ import { IoIosHelpCircleOutline } from "react-icons/io";
 
 
 export default function KanbasNavigation() {
+  const { pathname } = useLocation();
+  const links = [
+    { label: "Dashboard", path: "/Kanbas/Dashboard", icon: AiOutlineDashboard },
+    { label: "Courses", path: "/Kanbas/Dashboard", icon: LiaBookSolid },
+    { label: "Calendar", path: "/Kanbas/Calendar", icon: IoCalendarOutline },
+    { label: "Inbox", path: "/Kanbas/Inbox", icon: FaInbox },
+    { label: "Labs", path: "/Labs", icon: LiaCogSolid },
+  ];
+
   return (
     <div id="wd-kanbas-navigation" style={{ width: 110 }}
       className="list-group rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2">
@@ -19,12 +28,23 @@ export default function KanbasNavigation() {
         className="list-group-item bg-black border-0 text-center">
         <img src="/images/NEU.png" width="75px" /></a><br />
 
-      <Link to="/Kanbas/Account" id="wd-account-link"
-        className="list-group-item text-center border-0 bg-black text-white">
-        <FaRegCircleUser className="fs-1 text text-white" /><br />
-        Account </Link>
+      <Link to="/Kanbas/Account" className={`list-group-item text-center border-0 bg-black
+            ${pathname.includes("Account") ? "bg-white text-danger" : "bg-black text-white"}`}>
+        <FaRegCircleUser className={`fs-1 ${pathname.includes("Account") ? "text-danger" : "text-white"}`} />
+        <br />
+        Account
+      </Link>
+      {links.map((link) => (
+        <Link key={link.path} to={link.path} className={`list-group-item bg-black text-center border-0
+              ${pathname.includes(link.label) ? "text-danger bg-white" : "text-white bg-black"}`}>
+          {link.icon({ className: "fs-1 text-danger" })}
+          <br />
+          {link.label}
+        </Link>
+      ))}
 
-      <Link to="/Kanbas/Dashboard" id="wd-dashboard-link"
+
+      {/*<Link to="/Kanbas/Dashboard" id="wd-dashboard-link"
         className="list-group-item text-center border-0
                    bg-white text-danger">
         <AiOutlineDashboard className="fs-1 text-danger" /><br />
@@ -36,7 +56,7 @@ export default function KanbasNavigation() {
         <LiaBookSolid className="fs-1 text-danger" /><br />
         Courses </Link>
 
-        <Link to="/Labs" id="wd-labs-link"
+      <Link to="/Labs" id="wd-labs-link"
         className="list-group-item text-white
                    bg-black text-center border-0">
         <MdOutlineAssignment className="fs-1 text-danger" /><br />
@@ -82,7 +102,7 @@ export default function KanbasNavigation() {
         className="list-group-item text-white
                    bg-black text-center border-0">
         <IoIosHelpCircleOutline className="fs-1 text-danger" /><br />
-        Help </Link>
+        Help </Link> */}
 
 
     </div>
