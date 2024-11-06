@@ -6,12 +6,15 @@ import { MdOutlineAssignment } from "react-icons/md";
 import { IoEllipsisVertical } from "react-icons/io5";
 import * as db from "../../Database";
 import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 
 
 
 export default function Assignments() {
   const { cid } = useParams()
   const assignments = db.assignments;
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const isFaculty = currentUser?.role === "FACULTY";
 
   return (
     <div id="wd-assignments">
@@ -22,13 +25,13 @@ export default function Assignments() {
 
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary">
-            <BsGripVertical className="me-2 fs-3" />
+            { isFaculty && <BsGripVertical className="me-2 fs-3" />}
             <IoIosArrowDown />
             ASSIGNMENTS
 
             <div id="assignment-controls-buttons" className="float-end">
               <span className="rounded-box px-3 py-1"> 40% of Total</span>
-              <BsPlus className="fs-4" />
+              {isFaculty && <BsPlus className="fs-4" />}
               <IoEllipsisVertical className="fs-4" />
             </div>
 
@@ -41,7 +44,7 @@ export default function Assignments() {
               <li className="wd-lesson list-group-item p-3 ps-1">
               <div className="d-flex align-items-center">
 
-                <BsGripVertical className="me-2 fs-3" />
+                {isFaculty && <BsGripVertical className="me-2 fs-3" />}
                 <MdOutlineAssignment color="green" />
 
                 <div className="d-flex flex-column ms-3">
@@ -58,7 +61,7 @@ export default function Assignments() {
                   </div>
                 </div>
               </div>
-              <LessonControlButtons />
+              {isFaculty && <LessonControlButtons  />}
             </li>
             )}
           </ul>
