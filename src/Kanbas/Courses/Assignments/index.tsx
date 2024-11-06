@@ -4,15 +4,16 @@ import LessonControlButtons from "../Modules/LessonControlButtons";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdOutlineAssignment } from "react-icons/md";
 import { IoEllipsisVertical } from "react-icons/io5";
-import * as db from "../../Database";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
+import AssignmentControlButtons from "./AssignmentControlButtons";
+import RemoveAssignmentModal from "./RemoveAssignment";
 
 
 
 export default function Assignments() {
   const { cid } = useParams()
-  const assignments = db.assignments;
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser?.role === "FACULTY";
 
@@ -31,7 +32,9 @@ export default function Assignments() {
 
             <div id="assignment-controls-buttons" className="float-end">
               <span className="rounded-box px-3 py-1"> 40% of Total</span>
-              {isFaculty && <BsPlus className="fs-4" />}
+              {isFaculty && 
+                <BsPlus className="fs-4" />  
+              }
               <IoEllipsisVertical className="fs-4" />
             </div>
 
@@ -61,12 +64,13 @@ export default function Assignments() {
                   </div>
                 </div>
               </div>
-              {isFaculty && <LessonControlButtons  />}
+              {isFaculty && <AssignmentControlButtons assignmentId={assignment._id} />}
             </li>
             )}
           </ul>
         </li>
       </ul>
+      <RemoveAssignmentModal />
     </div>
   );
 }
