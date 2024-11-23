@@ -52,6 +52,14 @@ export default function TOC() {
           Github Repo
         </a>
       </li>
+
+      <li className="nav-item">
+        <a id="wd-github"
+          href="https://github.com/avnimis/kanbas-server-node-app.git" 
+          className = "nav-link">
+          Server Repo
+        </a>
+      </li>
     </ul>
   );
 }
