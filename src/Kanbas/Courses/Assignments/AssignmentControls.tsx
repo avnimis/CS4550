@@ -1,16 +1,22 @@
 import { FaPlus, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 export default function AssignmentControls() {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
+    const navigate = useNavigate();
+    const { cid } = useParams();
+    
     const isFaculty = currentUser?.role === "FACULTY";
 
     return (
         <div id="wd-assignment-controls" className="text-nowrap">
             {isFaculty && <>
                 <button id="wd-add-assignment-btn" className="btn btn-lg btn-danger me-1 float-end">
-                    <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-                    Assignment</button>
+                    <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} 
+                    onClick={() => navigate(`/Kanbas/Courses/${cid}/Assignments/new`)} />
+                    Assignment </button>
                 <button id="wd-add-group" className="btn btn-lg btn-secondary me-1 float-end">
                     <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                     Group
