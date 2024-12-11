@@ -13,9 +13,10 @@ export default function AssignmentControls() {
     return (
         <div id="wd-assignment-controls" className="text-nowrap">
             {isFaculty && <>
-                <button id="wd-add-assignment-btn" className="btn btn-lg btn-danger me-1 float-end">
+                <button id="wd-add-assignment-btn" className="btn btn-lg btn-danger me-1 float-end"
+                    onClick={() => navigate(`/Kanbas/Courses/${cid}/Assignments/new`)}>
                     <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} 
-                    onClick={() => navigate(`/Kanbas/Courses/${cid}/Assignments/new`)} />
+                     />
                     Assignment </button>
                 <button id="wd-add-group" className="btn btn-lg btn-secondary me-1 float-end">
                     <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
